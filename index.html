@@ -80,10 +80,18 @@
   }
   .dropdown a:hover{color:var(--gold-deep);}
 
-  .nav-actions{display:flex; align-items:center; gap:20px; font-size:13.5px;}
+  .nav-actions{display:flex; align-items:center; gap:18px; font-size:13.5px;}
+  .nav-icon{
+    display:flex; align-items:center; justify-content:center;
+    width:22px; height:22px; position:relative;
+    color:var(--charcoal);
+  }
+  .nav-icon:hover{color:var(--gold-deep);}
+  .nav-icon svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.6;}
   .cart-dot{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--sage); display:inline-block; margin-left:4px;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--sage); position:absolute; top:-2px; right:-3px;
+    border:1.5px solid var(--paper);
   }
 
   /* ---------- hamburger + drawer ---------- */
@@ -139,6 +147,21 @@
   .dgroup-items{padding:2px 18px 12px;}
   .dgroup-items a{display:block; padding:7px 4px; font-size:13.5px; opacity:0.85;}
   .dgroup-items a:hover{color:var(--gold-deep); opacity:1;}
+
+  .drawer-gap{margin-top:14px; border-top:8px solid var(--cream);}
+  .drawer-gap .drawer-flat{border-bottom:1px solid var(--line);}
+
+  .drawer-lang{
+    display:flex; gap:8px; padding:20px 18px 24px;
+    border-top:8px solid var(--cream); margin-top:0;
+  }
+  .lang-btn{
+    flex:1; padding:9px 0; font-size:13px; font-weight:600;
+    border:1px solid var(--line); background:var(--paper); color:var(--charcoal);
+    cursor:pointer; border-radius:3px;
+  }
+  .lang-btn.active{background:var(--brown); color:var(--paper); border-color:var(--brown);}
+  .lang-btn:not(.active):hover{border-color:var(--gold);}
 
   /* ---------- hero ---------- */
   .hero{
@@ -236,34 +259,28 @@
   .bs-info .price{font-size:14px; color:var(--charcoal); opacity:0.72;}
   .bs-info .price .was{text-decoration:line-through; opacity:0.5; margin-right:6px; font-size:12.5px;}
 
-  /* ---------- shop by room (real categories) ---------- */
-  .room-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-  .room-card{
-    position:relative; overflow:hidden; border-radius:3px;
-    min-height:200px; display:flex; align-items:flex-end; padding:22px;
+  /* ---------- shop by usage: circular photo style ---------- */
+  .type-strip{background:var(--paper);}
+  .usage-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:24px;
   }
-  .room-card::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(43,35,24,0.72) 0%, rgba(43,35,24,0.04) 60%);}
-  .room-card span{position:relative; z-index:2; color:var(--paper); font-family:'Fraunces',serif; font-size:19px; font-weight:600;}
-  .room-card small{position:relative; z-index:2; color:rgba(254,252,249,0.78); font-size:11.5px; display:block; margin-top:2px;}
-  .room-1{grid-column:span 2; min-height:280px; background:linear-gradient(150deg,#C89355,#7A5330);}
-  .room-2{background:linear-gradient(150deg,#B9854F,#6B4A2C);}
-  .room-3{background:linear-gradient(150deg,#D9AD72,#8A6238);}
-  .room-4{background:linear-gradient(150deg,#8B9877,#54613F);}
-  .room-5{background:linear-gradient(150deg,#C4A883,#725536);}
-  .room-6{background:linear-gradient(150deg,#A98F6C,#63482C);}
-  .room-7{background:linear-gradient(150deg,#7E9169,#495A38);}
-
-  /* ---------- shop by type ---------- */
-  .type-strip{background:var(--brown); color:var(--cream);}
-  .type-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-  .type-chip{
-    border:1px solid rgba(250,243,233,0.18);
-    padding:24px 16px; text-align:center;
-    transition:background .15s ease;
+  .usage-item{text-align:center; display:block;}
+  .usage-circle{
+    width:100%; aspect-ratio:1/1; border-radius:50%;
+    margin-bottom:14px; transition:transform .15s ease;
   }
-  .type-chip:hover{background:rgba(200,147,85,0.16); border-color:var(--gold);}
-  .type-chip .icon{font-size:24px; margin-bottom:10px; display:block;}
-  .type-chip span{font-size:13.5px; font-weight:600;}
+  .usage-item:hover .usage-circle{transform:scale(1.04);}
+  .usage-label{
+    font-size:13px; font-weight:700; letter-spacing:0.02em; text-transform:uppercase;
+    color:var(--charcoal);
+  }
+  .usage-label sup{font-size:10px; opacity:0.55; font-weight:600; margin-left:2px;}
+  @media (max-width: 900px){
+    .usage-grid{grid-template-columns:repeat(3,1fr); gap:20px;}
+  }
+  @media (max-width: 480px){
+    .usage-grid{grid-template-columns:repeat(2,1fr);}
+  }
 
   /* ---------- kids / business split ---------- */
   .split{display:grid; grid-template-columns:1fr;}
@@ -274,20 +291,288 @@
   .split-panel h2{font-size:clamp(24px,2.8vw,36px); margin-bottom:14px; max-width:370px;}
   .split-panel p{font-size:15px; line-height:1.6; max-width:390px; margin-bottom:24px; opacity:0.92;}
 
+  .client-logos{margin-top:8px; padding-top:22px; border-top:1px solid rgba(43,38,32,0.14); max-width:420px;}
+  .client-logos-label{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; opacity:0.6; margin-bottom:14px; font-weight:700;}
+  .client-logo-row{display:flex; flex-wrap:wrap; gap:16px; align-items:center;}
+  .client-logo{
+    height:30px; padding:0 16px;
+    display:flex; align-items:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:13.5px;
+    color:var(--charcoal); opacity:0.5;
+    border:1px dashed rgba(43,38,32,0.3); border-radius:2px;
+  }
+
   .custom-cta{background:var(--charcoal); color:var(--cream); text-align:center; padding:90px 32px;}
   .custom-cta .section-label{color:var(--gold-light);}
   .custom-cta h2{font-size:clamp(26px,3.6vw,40px); max-width:600px; margin:0 auto 16px; color:var(--paper);}
   .custom-cta p{max-width:460px; margin:0 auto 28px; color:rgba(250,243,233,0.72); font-size:15.5px; line-height:1.6;}
 
+  /* ---------- reviews slider ---------- */
+  .reviews{background:var(--cream);}
+  .slider-wrap{position:relative;}
+  .review-track{
+    display:flex; gap:16px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .review-track::-webkit-scrollbar{display:none;}
+  .review-card{
+    background:var(--paper); border:1px solid var(--line); overflow:hidden;
+    flex:0 0 auto;
+    width:220px;
+    scroll-snap-align:start;
+  }
+  .review-photo{aspect-ratio:4/3; background:linear-gradient(150deg,#E4C89C,#B9854F);}
+  .review-body{padding:13px 14px 16px;}
+  .stars{color:var(--gold-deep); font-size:12px; letter-spacing:2px; margin-bottom:8px;}
+  .reviewer{display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; margin-bottom:6px;}
+  .verified-badge{
+    width:14px; height:14px; border-radius:50%;
+    background:var(--sage); color:var(--paper);
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:9px; flex-shrink:0;
+  }
+  .review-text{font-size:12.5px; line-height:1.5; opacity:0.85;}
+
+  .slider-arrow{
+    position:absolute; top:38%; transform:translateY(-50%);
+    width:38px; height:38px; border-radius:50%;
+    background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:15px; color:var(--charcoal);
+    box-shadow:0 6px 16px rgba(43,35,24,0.10);
+    z-index:5;
+  }
+  .slider-arrow:hover{border-color:var(--gold); color:var(--gold-deep);}
+  .slider-prev{left:-18px;}
+  .slider-next{right:-18px;}
+
+  .slider-dots{display:flex; justify-content:center; gap:8px; margin-top:20px;}
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--line); border:none; cursor:pointer; padding:0;
+    transition:background .15s ease, width .15s ease;
+  }
+  .dot.active{background:var(--gold-deep); width:20px; border-radius:4px;}
+
+  @media (max-width: 640px){
+    .review-card{width:44vw;}
+    .slider-arrow{display:none;}
+  }
+
+  /* ---------- new arrivals slider ---------- */
+  .new-arrivals{background:var(--paper);}
+  .na-track{
+    display:flex; gap:20px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .na-track::-webkit-scrollbar{display:none;}
+  .na-card{
+    background:var(--paper); border:1px solid var(--line);
+    flex:0 0 auto; width:250px; scroll-snap-align:start;
+  }
+  .na-photo{aspect-ratio:1/1; position:relative; background:linear-gradient(150deg,#E4C89C,#B9854F);}
+  .na-badge{position:absolute; top:10px; left:10px; background:var(--sage); color:var(--paper); font-size:10.5px; font-weight:700; padding:4px 8px;}
+  .na-info{padding:15px 15px 17px;}
+  .na-info .cat{font-size:11px; color:var(--sage); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:5px;}
+  .na-info h3{font-size:15.5px; font-family:'Inter',sans-serif; font-weight:600; margin-bottom:6px;}
+  .na-info .price{font-size:14px; opacity:0.75;}
+
+  @media (max-width: 640px){
+    .na-card{width:36vw;}
+  }
+
+  /* ---------- room product strip ---------- */
+  .room-products{margin-top:32px;}
+  .rp-track{display:flex; gap:18px; overflow-x:auto; padding-bottom:6px; scrollbar-width:none;}
+  .rp-track::-webkit-scrollbar{display:none;}
+  .rp-card{flex:0 0 auto; width:210px; background:var(--paper); border:1px solid var(--line);}
+  .rp-photo{aspect-ratio:1/1; background:linear-gradient(150deg,#E4C89C,#B9854F);}
+  .rp-info{padding:13px 14px 15px;}
+  .rp-info .cat{font-size:10.5px; color:var(--sage); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;}
+  .rp-info h3{font-size:14px; font-weight:600; margin-bottom:5px;}
+  .rp-info .price{font-size:13px; opacity:0.75;}
+
+  /* ---------- shop by place: sliding tabs + full-width photo hero ---------- */
+  .room-tabs-wrap{position:relative; display:flex; align-items:center; gap:10px;}
+  .room-tabs{
+    display:flex; gap:10px; flex-wrap:nowrap;
+    overflow-x:auto; scrollbar-width:none;
+    border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:0;
+    flex:1; min-width:0;
+  }
+  .room-tabs::-webkit-scrollbar{display:none;}
+  .room-tab{
+    flex:0 0 auto;
+    padding:9px 18px; font-size:13.5px; font-weight:600;
+    border:1px solid var(--line); background:var(--paper); color:var(--charcoal);
+    cursor:pointer; border-radius:20px; transition:all .15s ease; white-space:nowrap;
+  }
+  .room-tab:hover{border-color:var(--gold);}
+  .room-tab.active{background:var(--brown); color:var(--paper); border-color:var(--brown);}
+
+  .tab-arrow{
+    flex:0 0 auto; margin-bottom:18px;
+    width:32px; height:32px; border-radius:50%;
+    background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:14px; color:var(--charcoal);
+  }
+  .tab-arrow:hover{border-color:var(--gold); color:var(--gold-deep);}
+
+  .room-hero{
+    position:relative;
+    width:100vw; margin-left:calc(50% - 50vw);
+    height:60vh; min-height:380px; max-height:560px;
+    margin-top:28px;
+    transition:background 0.3s ease;
+    overflow:hidden;
+  }
+  .room-hero-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(43,35,24,0.55) 0%, rgba(43,35,24,0) 40%);
+  }
+  .room-hero-caption{
+    position:absolute; left:0; bottom:0; z-index:2;
+    padding:32px 40px;
+  }
+  .rh-eyebrow{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-light); font-weight:700; margin-bottom:6px;}
+  .room-hero-caption h3{font-family:'Fraunces',serif; font-size:34px; font-weight:600; color:var(--paper);}
+
+  @media (max-width: 640px){
+    .room-hero{height:46vh; min-height:280px;}
+    .room-hero-caption{padding:22px 20px;}
+    .room-hero-caption h3{font-size:26px;}
+    .tab-arrow{width:26px; height:26px; font-size:12px;}
+  }
+
+
   footer{background:var(--brown); color:rgba(250,243,233,0.62); padding:44px 32px 26px; font-size:12.5px; text-align:center;}
   footer img{height:32px; margin:0 auto 10px; filter:brightness(0) invert(1) opacity(0.85);}
+
+  /* ---------- rich footer ---------- */
+  .site-footer{background:var(--brown); color:rgba(250,243,233,0.85); padding:56px 32px 26px;}
+  .footer-inner{max-width:640px; margin:0 auto;}
+  .footer-title{font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:var(--paper); margin-bottom:6px;}
+  .footer-sub{font-size:13.5px; opacity:0.75; margin-bottom:16px;}
+  .newsletter-row{display:flex; gap:10px; margin-bottom:14px;}
+  .newsletter-row input{
+    flex:1; padding:12px 14px; border:1px solid rgba(250,243,233,0.25);
+    background:transparent; color:var(--paper); font-size:13.5px; border-radius:2px;
+  }
+  .newsletter-row input::placeholder{color:rgba(250,243,233,0.5);}
+  .newsletter-row button{
+    padding:12px 22px; background:var(--gold); color:var(--brown);
+    border:none; font-size:13.5px; font-weight:700; border-radius:2px; cursor:pointer;
+  }
+  .newsletter-row button:hover{background:var(--gold-light);}
+  .consent-text{font-size:11.5px; opacity:0.6; line-height:1.5; margin-bottom:30px;}
+  .consent-text a{text-decoration:underline; opacity:0.9;}
+
+  .footer-accordion{border-top:1px solid rgba(250,243,233,0.15);}
+  .footer-accordion details{border-bottom:1px solid rgba(250,243,233,0.15);}
+  .footer-accordion summary{
+    list-style:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 2px; font-size:14.5px; font-weight:600; color:var(--paper);
+  }
+  .footer-accordion summary::-webkit-details-marker{display:none;}
+  .footer-accordion summary .plus{font-size:17px; font-weight:400; transition:transform .18s ease;}
+  .footer-accordion details[open] summary .plus{transform:rotate(45deg);}
+  .footer-accordion .acc-body{padding:0 2px 16px; font-size:13px; opacity:0.75; line-height:1.9;}
+  .footer-accordion .acc-body a{display:block; opacity:0.85;}
+  .footer-accordion .acc-body a:hover{opacity:1; color:var(--gold-light);}
+
+  .payment-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:32px 0 26px;}
+  .pay-badge{
+    padding:6px 12px; border:1px solid rgba(250,243,233,0.2);
+    font-size:11.5px; font-weight:700; letter-spacing:0.02em; color:rgba(250,243,233,0.8);
+    border-radius:3px;
+  }
+
+  .social-row{display:flex; justify-content:center; gap:14px; margin-bottom:22px;}
+  .social-icon{
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid rgba(250,243,233,0.25);
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; color:var(--paper);
+  }
+  .social-icon:hover{border-color:var(--gold); color:var(--gold-light);}
+
+  .footer-copy{text-align:center; font-size:12px; opacity:0.55; margin-top:8px;}
+
+  .footer-lang{display:flex; justify-content:center; gap:8px; margin-bottom:18px;}
+  .footer-lang .lang-btn{
+    padding:8px 20px; font-size:12.5px; font-weight:600;
+    border:1px solid rgba(250,243,233,0.25); background:transparent; color:rgba(250,243,233,0.7);
+    cursor:pointer; border-radius:3px;
+  }
+  .footer-lang .lang-btn.active{background:var(--gold); color:var(--brown); border-color:var(--gold);}
+  .footer-lang .lang-btn:not(.active):hover{border-color:var(--gold-light); color:var(--paper);}
+
+  /* ---------- newsletter banner ---------- */
+  .newsletter-banner{
+    background:var(--charcoal); color:var(--paper);
+    padding:52px 32px; text-align:center;
+  }
+  .nb-logo{
+    font-family:'Fraunces',serif; font-size:26px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--paper);
+    margin-bottom:2px;
+  }
+  .nb-logo-sub{
+    font-size:10px; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--gold-light); margin-bottom:22px;
+  }
+  .nb-copy{
+    font-size:16px; color:var(--gold-light); font-weight:500;
+    max-width:480px; margin:0 auto 24px; line-height:1.45;
+  }
+  .nb-form{
+    display:flex; max-width:440px; margin:0 auto;
+    border:1px solid rgba(250,243,233,0.25); border-radius:26px;
+    overflow:hidden;
+  }
+  .nb-form input{
+    flex:1; background:transparent; border:none; color:var(--paper);
+    padding:13px 20px; font-size:13.5px;
+  }
+  .nb-form input::placeholder{color:rgba(250,243,233,0.5);}
+  .nb-form button{
+    display:flex; align-items:center; gap:6px;
+    background:var(--sage); color:var(--paper);
+    border:none; padding:13px 24px; font-size:13.5px; font-weight:600;
+    cursor:pointer; white-space:nowrap;
+  }
+  .nb-form button:hover{background:#5c6a4a;}
+
+  /* ---------- contact info strip ---------- */
+  .contact-strip{background:var(--brown); padding:36px 32px;}
+  .contact-grid{
+    max-width:1000px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  .contact-item{display:flex; gap:12px; align-items:flex-start;}
+  .contact-icon{
+    width:34px; height:34px; border-radius:50%; flex-shrink:0;
+    background:rgba(250,243,233,0.08); border:1px solid rgba(250,243,233,0.2);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold-light); font-size:15px;
+  }
+  .contact-label{font-size:13.5px; font-weight:700; color:var(--paper); margin-bottom:3px;}
+  .contact-value{font-size:13px; color:rgba(250,243,233,0.7); line-height:1.4;}
+  .contact-value a{color:var(--gold-light); opacity:1;}
+
+  @media (max-width: 800px){
+    .contact-grid{grid-template-columns:1fr 1fr; row-gap:22px;}
+  }
 
   @media (max-width: 980px){
     nav.primary{display:none;}
     .bs-grid{grid-template-columns:repeat(2,1fr);}
-    .room-grid{grid-template-columns:1fr 1fr;}
-    .room-1{grid-column:1/3; grid-row:auto; min-height:200px;}
-    .type-grid{grid-template-columns:repeat(2,1fr);}
     .split{grid-template-columns:1fr;}
   }
 </style>
@@ -334,13 +619,20 @@
           </div>
         </div>
         <div><a href="#">Kids</a></div>
-        <div><a href="#">Business</a></div>
+        <div><a href="#">Business | B2B</a></div>
       </nav>
 
       <div class="nav-actions">
-        <a href="#">Search</a>
-        <a href="#">Account</a>
-        <a href="#">Cart<span class="cart-dot"></span></a>
+        <a href="#" class="nav-icon" aria-label="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Account">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1.5-4 4.5-6 7.5-6s6 2 7.5 6"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-dot"></span>
+        </a>
       </div>
     </div>
   </header>
@@ -384,8 +676,17 @@
     </details>
 
     <a class="drawer-flat" href="#" style="color:#C0392B;">Kids</a>
-    <a class="drawer-flat" href="#">Custom Orders</a>
-    <a class="drawer-flat" href="#">Business</a>
+    <a class="drawer-flat" href="#">Bundles</a>
+
+    <div class="drawer-gap">
+      <a class="drawer-flat" href="#">Custom Orders</a>
+      <a class="drawer-flat" href="#">Business | B2B</a>
+    </div>
+
+    <div class="drawer-lang">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ar">العربية</button>
+    </div>
   </aside>
 
   <section class="hero">
@@ -442,9 +743,112 @@
             <div class="price">2,900 EGP</div>
           </div>
         </div>
+        <div class="bs-card">
+          <div class="bs-photo"><div class="bs-badge">New</div></div>
+          <div class="bs-info">
+            <div class="cat">Living · Well Being</div>
+            <h3>Relaxation Lounger</h3>
+            <div class="price">3,990 EGP</div>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-photo"></div>
+          <div class="bs-info">
+            <div class="cat">Bedrooms · Wardrobe</div>
+            <h3>Linear Wardrobe</h3>
+            <div class="price">7,400 EGP</div>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-photo"><div class="bs-badge">-11%</div></div>
+          <div class="bs-info">
+            <div class="cat">Living · Shelves</div>
+            <h3>Gentle Line Shelf</h3>
+            <div class="price"><span class="was">1,900 EGP</span>1,700 EGP</div>
+          </div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-photo"></div>
+          <div class="bs-info">
+            <div class="cat">Office · Organizers</div>
+            <h3>Desk Riser Set</h3>
+            <div class="price">1,650 EGP</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <section class="new-arrivals">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Just Landed</div>
+          <h2>New Arrivals</h2>
+        </div>
+        <a href="#" class="section-link">View all →</a>
+      </div>
+      <div class="slider-wrap">
+        <button class="slider-arrow slider-prev" id="naPrevBtn" aria-label="Previous">‹</button>
+        <div class="na-track" id="naTrack">
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Living · Tables</div><h3>Midday Elegance Table</h3><div class="price">3,990 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Kitchen · Racks</div><h3>Arc Spice Rack</h3><div class="price">1,450 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Kids · Montessori</div><h3>Reading Nook Shelf</h3><div class="price">2,600 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Office · Organizers</div><h3>Desk Riser Set</h3><div class="price">1,650 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Bathroom · Storage</div><h3>Wall Towel Ladder</h3><div class="price">1,890 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Outdoors · Chairs</div><h3>Cedar Garden Chair</h3><div class="price">4,200 EGP</div></div>
+          </div>
+        </div>
+        <button class="slider-arrow slider-next" id="naNextBtn" aria-label="Next">›</button>
+      </div>
+      <div class="slider-dots" id="naDots"></div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const track = document.getElementById('naTrack');
+      const dotsWrap = document.getElementById('naDots');
+      const prevBtn = document.getElementById('naPrevBtn');
+      const nextBtn = document.getElementById('naNextBtn');
+      const cards = track.children.length;
+      const scrollAmount = () => track.querySelector('.na-card').offsetWidth + 20;
+
+      for(let i=0; i<cards; i++){
+        const d = document.createElement('button');
+        d.className = 'dot' + (i===0 ? ' active' : '');
+        d.addEventListener('click', () => track.scrollTo({left: i*scrollAmount(), behavior:'smooth'}));
+        dotsWrap.appendChild(d);
+      }
+      const dots = dotsWrap.querySelectorAll('.dot');
+
+      function updateDots(){
+        const idx = Math.round(track.scrollLeft / scrollAmount());
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+      }
+      track.addEventListener('scroll', () => { window.requestAnimationFrame(updateDots); });
+
+      prevBtn.addEventListener('click', () => track.scrollBy({left:-scrollAmount(), behavior:'smooth'}));
+      nextBtn.addEventListener('click', () => track.scrollBy({left:scrollAmount(), behavior:'smooth'}));
+    })();
+  </script>
 
   <div class="divider"><div class="line"></div><span class="mark">◆</span><div class="line"></div></div>
 
@@ -455,37 +859,143 @@
           <div class="section-label">Browse</div>
           <h2>Shop by Place</h2>
         </div>
-        <a href="#" class="section-link">All places →</a>
+        <a href="#" class="section-link" id="roomViewAll">View all Kitchen →</a>
       </div>
-      <div class="room-grid">
-        <a href="#" class="room-card room-1"><span>Kitchen<small>Racks, organizers & shelving</small></span></a>
-        <a href="#" class="room-card room-2"><span>Living<small>Tables & shelves</small></span></a>
-        <a href="#" class="room-card room-3"><span>Bathroom<small>Storage & racks</small></span></a>
-        <a href="#" class="room-card room-4"><span>Bedrooms<small>Wardrobes & bedside pieces</small></span></a>
-        <a href="#" class="room-card room-5"><span>Office<small>Desk organizers</small></span></a>
-        <a href="#" class="room-card room-6"><span>Outdoors<small>Weather-ready wood</small></span></a>
-        <a href="#" class="room-card room-7"><span>Gardens<small>Planters & garden pieces</small></span></a>
+      <div class="room-tabs-wrap">
+        <button class="tab-arrow tab-arrow-prev" id="tabPrevBtn" aria-label="Previous">‹</button>
+        <div class="room-tabs" id="roomTabs">
+          <button class="room-tab active" data-room="Kitchen">Kitchen</button>
+          <button class="room-tab" data-room="Living">Living</button>
+          <button class="room-tab" data-room="Bathroom">Bathroom</button>
+          <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
+          <button class="room-tab" data-room="Office">Office</button>
+          <button class="room-tab" data-room="Outdoors">Outdoors</button>
+          <button class="room-tab" data-room="Gardens">Gardens</button>
+        </div>
+        <button class="tab-arrow tab-arrow-next" id="tabNextBtn" aria-label="Next">›</button>
+      </div>
+    </div>
+
+    <div class="room-hero" id="roomHero">
+      <div class="room-hero-overlay"></div>
+      <div class="room-hero-caption">
+        <div class="rh-eyebrow" id="rhEyebrow">18 pieces</div>
+        <h3 id="rhTitle">Kitchen</h3>
       </div>
     </div>
   </section>
+
+  <script>
+    (function(){
+      const roomData = {
+        Kitchen: {count:'18 pieces', gradient:'linear-gradient(120deg,#C89355,#5A3E28)', products:[
+          {name:'Cozy Mug Shelf', price:'2,900 EGP'},
+          {name:'Arc Spice Rack', price:'1,450 EGP'},
+          {name:'Modular Pot Rail', price:'2,100 EGP'}
+        ]},
+        Living: {count:'24 pieces', gradient:'linear-gradient(120deg,#B9854F,#4A3626)', products:[
+          {name:'Midday Elegance Table', price:'3,990 EGP'},
+          {name:'Gentle Line Shelf', price:'1,700 EGP'},
+          {name:'Relaxation Lounger', price:'3,990 EGP'}
+        ]},
+        Bathroom: {count:'9 pieces', gradient:'linear-gradient(120deg,#D9AD72,#6B4A2C)', products:[
+          {name:'Wall Towel Ladder', price:'1,890 EGP'},
+          {name:'Vanity Organizer', price:'1,550 EGP'},
+          {name:'Corner Shelf Set', price:'1,200 EGP'}
+        ]},
+        Bedrooms: {count:'11 pieces', gradient:'linear-gradient(120deg,#8B9877,#3D4630)', products:[
+          {name:'Linear Wardrobe', price:'7,400 EGP'},
+          {name:'Bedside Table', price:'2,100 EGP'},
+          {name:'Slat Headboard', price:'4,600 EGP'}
+        ]},
+        Office: {count:'7 pieces', gradient:'linear-gradient(120deg,#C4A883,#5C4630)', products:[
+          {name:'Desk Riser Set', price:'1,650 EGP'},
+          {name:'Cable Organizer Tray', price:'890 EGP'},
+          {name:'Bookend Pair', price:'750 EGP'}
+        ]},
+        Outdoors: {count:'4 pieces', gradient:'linear-gradient(120deg,#A98F6C,#4E3B24)', products:[
+          {name:'Cedar Garden Chair', price:'4,200 EGP'},
+          {name:'Slatted Bench', price:'5,100 EGP'}
+        ]},
+        Gardens: {count:'3 pieces', gradient:'linear-gradient(120deg,#7E9169,#3A4630)', products:[
+          {name:'Raised Planter Box', price:'2,300 EGP'},
+          {name:'Trellis Panel', price:'1,600 EGP'}
+        ]}
+      };
+
+      const tabs = document.querySelectorAll('#roomTabs .room-tab');
+      const hero = document.getElementById('roomHero');
+      const eyebrow = document.getElementById('rhEyebrow');
+      const title = document.getElementById('rhTitle');
+      const viewAll = document.getElementById('roomViewAll');
+      const tabTrack = document.getElementById('roomTabs');
+      const prevBtn = document.getElementById('tabPrevBtn');
+      const nextBtn = document.getElementById('tabNextBtn');
+
+      function render(room){
+        const data = roomData[room];
+        hero.style.background = data.gradient;
+        eyebrow.textContent = data.count;
+        title.textContent = room;
+        viewAll.textContent = 'View all ' + room + ' →';
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          render(tab.dataset.room);
+        });
+      });
+
+      prevBtn.addEventListener('click', () => tabTrack.scrollBy({left:-160, behavior:'smooth'}));
+      nextBtn.addEventListener('click', () => tabTrack.scrollBy({left:160, behavior:'smooth'}));
+
+      render('Kitchen');
+    })();
+  </script>
 
   <section class="type-strip">
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label" style="color:var(--gold-light)">Filter</div>
-          <h2 style="color:var(--paper)">Shop by Usage</h2>
+          <div class="section-label">Filter</div>
+          <h2>Shop by Usage</h2>
         </div>
       </div>
-      <div class="type-grid">
-        <a href="#" class="type-chip"><span class="icon">▢</span><span>Organizers</span></a>
-        <a href="#" class="type-chip"><span class="icon">▥</span><span>Tables</span></a>
-        <a href="#" class="type-chip"><span class="icon">▦</span><span>Chairs</span></a>
-        <a href="#" class="type-chip"><span class="icon">▭</span><span>TV Units</span></a>
-        <a href="#" class="type-chip"><span class="icon">▤</span><span>Racks</span></a>
-        <a href="#" class="type-chip"><span class="icon">▧</span><span>Shelves</span></a>
-        <a href="#" class="type-chip"><span class="icon">▨</span><span>Wardrobe</span></a>
-        <a href="#" class="type-chip"><span class="icon">◈</span><span>Well Being</span></a>
+      <div class="usage-grid">
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#E4C89C,#B9854F);"></div>
+          <div class="usage-label">Organizers <sup>32</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#D9AD72,#8A6238);"></div>
+          <div class="usage-label">Tables <sup>14</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#C89355,#7A5330);"></div>
+          <div class="usage-label">Chairs <sup>6</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#B9854F,#6B4A2C);"></div>
+          <div class="usage-label">TV Units <sup>5</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#C4A883,#725536);"></div>
+          <div class="usage-label">Racks <sup>21</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#A98F6C,#63482C);"></div>
+          <div class="usage-label">Shelves <sup>17</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#8B9877,#54613F);"></div>
+          <div class="usage-label">Wardrobe <sup>8</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#7E9169,#495A38);"></div>
+          <div class="usage-label">Well Being <sup>4</sup></div>
+        </a>
       </div>
     </div>
   </section>
@@ -502,6 +1012,15 @@
       <h2>Furnish at scale, priced for it</h2>
       <p>Bulk pricing for schools and nurseries, trade accounts for designers, and project quotes for hospitality and corporate spaces.</p>
       <a href="#" class="btn btn-primary" style="width:fit-content; background:var(--brown);">Business Inquiries</a>
+      <div class="client-logos">
+        <div class="client-logos-label">Trusted by</div>
+        <div class="client-logo-row">
+          <div class="client-logo">Client 1</div>
+          <div class="client-logo">Client 2</div>
+          <div class="client-logo">Client 3</div>
+          <div class="client-logo">Client 4</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -512,9 +1031,181 @@
     <a href="#" class="btn btn-primary" style="background:var(--gold);">Start a Custom Order</a>
   </section>
 
-  <footer>
-    <img src="https://timberedgroup.com/wp-content/uploads/2024/04/Asset-10-1.png" alt="Timbered">
-    <div>Handcrafted furniture, assembled to order — Cairo, Egypt</div>
+  <section class="reviews">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <div class="section-label">From Our Customers</div>
+          <h2>What People Are Saying</h2>
+        </div>
+      </div>
+      <div class="slider-wrap">
+        <button class="slider-arrow slider-prev" id="prevBtn" aria-label="Previous">‹</button>
+        <div class="review-track" id="reviewTrack">
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">سلمى ع <span class="verified-badge">✓</span></div>
+              <div class="review-text">Very good quality, suitable choice for neck, ideal.</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">Jean-Pierre D. <span class="verified-badge">✓</span></div>
+              <div class="review-text">Beautiful buffet, great quality and meticulous delivery.</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">Mona K. <span class="verified-badge">✓</span></div>
+              <div class="review-text">Exactly as pictured, sturdy build and fast assembly.</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">Ahmed T. <span class="verified-badge">✓</span></div>
+              <div class="review-text">Perfect fit for our kitchen, worth every pound.</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">Nourhan S. <span class="verified-badge">✓</span></div>
+              <div class="review-text">Loved the finish, arrived earlier than expected.</div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-photo"></div>
+            <div class="review-body">
+              <div class="stars">★★★★★</div>
+              <div class="reviewer">Karim H. <span class="verified-badge">✓</span></div>
+              <div class="review-text">Solid wood, great packaging, easy assembly.</div>
+            </div>
+          </div>
+        </div>
+        <button class="slider-arrow slider-next" id="nextBtn" aria-label="Next">›</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const track = document.getElementById('reviewTrack');
+      const dotsWrap = document.getElementById('sliderDots');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const cards = track.children.length;
+      const scrollAmount = () => track.querySelector('.review-card').offsetWidth + 16;
+
+      for(let i=0; i<cards; i++){
+        const d = document.createElement('button');
+        d.className = 'dot' + (i===0 ? ' active' : '');
+        d.addEventListener('click', () => track.scrollTo({left: i*scrollAmount(), behavior:'smooth'}));
+        dotsWrap.appendChild(d);
+      }
+      const dots = dotsWrap.querySelectorAll('.dot');
+
+      function updateDots(){
+        const idx = Math.round(track.scrollLeft / scrollAmount());
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+      }
+      track.addEventListener('scroll', () => { window.requestAnimationFrame(updateDots); });
+
+      prevBtn.addEventListener('click', () => track.scrollBy({left:-scrollAmount(), behavior:'smooth'}));
+      nextBtn.addEventListener('click', () => track.scrollBy({left:scrollAmount(), behavior:'smooth'}));
+    })();
+  </script>
+
+  <section class="newsletter-banner">
+    <div class="nb-logo">Timbered</div>
+    <div class="nb-logo-sub">Home</div>
+    <div class="nb-copy">Sign up for our newsletter and receive 5% off your first order!</div>
+    <div class="nb-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe →</button>
+    </div>
+  </section>
+
+  <section class="contact-strip">
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-label">Customer Service</div>
+          <div class="contact-value">Sun–Sat: 10am–7pm</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Call Us</div>
+          <div class="contact-value">Hotline: <a href="tel:+201003332255">+20 100 333 2255</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label">Get in Touch</div>
+          <div class="contact-value"><a href="mailto:timberedgroup@gmail.com">timberedgroup@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Addresses</div>
+          <div class="contact-value"><a href="#">Get Direction to our branches</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-accordion">
+        <details>
+          <summary>About <span class="plus">+</span></summary>
+          <div class="acc-body">
+            <a href="#">Our Story</a>
+            <a href="#">Craftsmanship</a>
+            <a href="#">Sustainability</a>
+          </div>
+        </details>
+        <details>
+          <summary>Company <span class="plus">+</span></summary>
+          <div class="acc-body">
+            <a href="#">Business (B2B)</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact Us</a>
+          </div>
+        </details>
+        <details>
+          <summary>Terms of Service <span class="plus">+</span></summary>
+          <div class="acc-body">
+            <a href="#">Shipping & Delivery</a>
+            <a href="#">Returns & Warranty</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </details>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="social-icon" aria-label="Facebook">f</a>
+        <a href="#" class="social-icon" aria-label="Instagram">◎</a>
+        <a href="#" class="social-icon" aria-label="TikTok">♪</a>
+        <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+      </div>
+
+      <div class="footer-copy">© 2026 Timbered</div>
+    </div>
   </footer>
 
   <script>
@@ -530,6 +1221,13 @@
     closeBtn.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeDrawer(); });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
