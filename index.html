@@ -291,6 +291,31 @@
   .split-panel h2{font-size:clamp(24px,2.8vw,36px); margin-bottom:14px; max-width:370px;}
   .split-panel p{font-size:15px; line-height:1.6; max-width:390px; margin-bottom:24px; opacity:0.92;}
 
+  /* ---------- kids feature: photo + trust badges ---------- */
+  .kids-feature{
+    display:grid; grid-template-columns:1fr 1fr;
+    min-height:460px;
+  }
+  .kf-photo{background:linear-gradient(150deg,#D98A7E,#7A2E24);}
+  .kf-content{
+    background:var(--sage); color:var(--paper);
+    padding:56px 48px; display:flex; flex-direction:column; justify-content:center;
+  }
+  .kf-content .section-label{color:inherit; opacity:0.8;}
+  .kf-content h2{font-size:clamp(24px,2.6vw,32px); margin-bottom:14px; max-width:370px;}
+  .kf-content p{font-size:15px; line-height:1.6; max-width:390px; margin-bottom:22px; opacity:0.92;}
+  .kf-badges{margin-top:30px; padding-top:24px; border-top:1px solid rgba(254,252,249,0.25); display:flex; flex-direction:column; gap:12px;}
+  .kf-badge{display:flex; align-items:center; gap:10px; font-size:13.5px; opacity:0.92;}
+  .kf-badge-icon{
+    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    background:rgba(254,252,249,0.15); border:1px solid rgba(254,252,249,0.3);
+    display:flex; align-items:center; justify-content:center; font-size:12px;
+  }
+  @media (max-width: 800px){
+    .kids-feature{grid-template-columns:1fr;}
+    .kf-photo{min-height:260px;}
+  }
+
   .client-logos{margin-top:8px; padding-top:22px; border-top:1px solid rgba(43,38,32,0.14); max-width:420px;}
   .client-logos-label{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; opacity:0.6; margin-bottom:14px; font-weight:700;}
   .client-logo-row{display:flex; flex-wrap:wrap; gap:16px; align-items:center;}
@@ -300,6 +325,27 @@
     font-family:'Fraunces',serif; font-weight:600; font-size:13.5px;
     color:var(--charcoal); opacity:0.5;
     border:1px dashed rgba(43,38,32,0.3); border-radius:2px;
+  }
+
+  /* ---------- bundles ---------- */
+  .bundles{background:var(--cream);}
+  .bundle-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .bundle-card{background:var(--paper); border:1px solid var(--line);}
+  .bundle-photo{aspect-ratio:16/11; position:relative; background:linear-gradient(150deg,#DCC6A5,#B98F62);}
+  .bundle-badge{
+    position:absolute; top:12px; left:12px;
+    background:var(--sage); color:var(--paper);
+    font-size:11px; font-weight:700; letter-spacing:0.03em;
+    padding:5px 10px;
+  }
+  .bundle-info{padding:18px 20px 20px;}
+  .bundle-info h3{font-family:'Fraunces',serif; font-size:18px; font-weight:600; margin-bottom:6px;}
+  .bundle-info p{font-size:13px; opacity:0.65; margin-bottom:12px;}
+  .bundle-price{font-size:15px; font-weight:600; color:var(--charcoal);}
+  .bundle-price .was{text-decoration:line-through; opacity:0.45; font-weight:400; margin-right:8px; font-size:13px;}
+
+  @media (max-width: 900px){
+    .bundle-grid{grid-template-columns:1fr;}
   }
 
   .custom-cta{background:var(--charcoal); color:var(--cream); text-align:center; padding:90px 32px;}
@@ -396,32 +442,27 @@
   .rp-info h3{font-size:14px; font-weight:600; margin-bottom:5px;}
   .rp-info .price{font-size:13px; opacity:0.75;}
 
-  /* ---------- shop by place: sliding tabs + full-width photo hero ---------- */
-  .room-tabs-wrap{position:relative; display:flex; align-items:center; gap:10px;}
+  /* ---------- shop by place: tabs (wrap, two rows) + full-width photo hero ---------- */
+  .room-tabs-wrap{
+    position:relative; display:flex; align-items:center; gap:10px;
+    border-bottom:1px solid var(--line); padding-bottom:18px;
+  }
   .room-tabs{
-    display:flex; gap:10px; flex-wrap:nowrap;
-    overflow-x:auto; scrollbar-width:none;
-    border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:0;
+    display:flex; gap:10px; flex-wrap:wrap;
+    background:var(--cream);
+    border-radius:14px;
+    padding:10px; margin-bottom:0;
     flex:1; min-width:0;
   }
-  .room-tabs::-webkit-scrollbar{display:none;}
   .room-tab{
     flex:0 0 auto;
-    padding:9px 18px; font-size:13.5px; font-weight:600;
-    border:1px solid var(--line); background:var(--paper); color:var(--charcoal);
+    padding:10px 20px; font-size:13.5px; font-weight:600;
+    border:1px solid transparent; background:var(--paper); color:var(--charcoal);
     cursor:pointer; border-radius:20px; transition:all .15s ease; white-space:nowrap;
+    box-shadow:0 1px 3px rgba(43,35,24,0.08);
   }
-  .room-tab:hover{border-color:var(--gold);}
-  .room-tab.active{background:var(--brown); color:var(--paper); border-color:var(--brown);}
-
-  .tab-arrow{
-    flex:0 0 auto; margin-bottom:18px;
-    width:32px; height:32px; border-radius:50%;
-    background:var(--paper); border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; font-size:14px; color:var(--charcoal);
-  }
-  .tab-arrow:hover{border-color:var(--gold); color:var(--gold-deep);}
+  .room-tab:hover{border-color:var(--gold); color:var(--gold-deep);}
+  .room-tab.active{background:var(--brown); color:var(--paper); border-color:var(--brown); box-shadow:0 3px 10px rgba(59,42,30,0.28);}
 
   .room-hero{
     position:relative;
@@ -446,7 +487,6 @@
     .room-hero{height:46vh; min-height:280px;}
     .room-hero-caption{padding:22px 20px;}
     .room-hero-caption h3{font-size:26px;}
-    .tab-arrow{width:26px; height:26px; font-size:12px;}
   }
 
 
@@ -602,7 +642,7 @@
             <a href="#">Bedrooms</a>
             <a href="#">Office</a>
             <a href="#">Outdoors</a>
-            <a href="#">Gardens</a>
+            <a href="#">Kids Space</a>
           </div>
         </div>
         <div>
@@ -616,6 +656,7 @@
             <a href="#">Shelves</a>
             <a href="#">Wardrobe</a>
             <a href="#">Well Being</a>
+            <a href="#">Flat Pack</a>
           </div>
         </div>
         <div><a href="#">Kids</a></div>
@@ -657,7 +698,7 @@
         <a href="#">Bedrooms</a>
         <a href="#">Office</a>
         <a href="#">Outdoors</a>
-        <a href="#">Gardens</a>
+        <a href="#">Kids Space</a>
       </div>
     </details>
 
@@ -672,6 +713,7 @@
         <a href="#">Shelves</a>
         <a href="#">Wardrobe</a>
         <a href="#">Well Being</a>
+        <a href="#">Flat Pack</a>
       </div>
     </details>
 
@@ -705,7 +747,6 @@
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label">Most Ordered</div>
           <h2>Best Sellers</h2>
         </div>
         <a href="#" class="section-link">View all →</a>
@@ -783,7 +824,6 @@
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label">Just Landed</div>
           <h2>New Arrivals</h2>
         </div>
         <a href="#" class="section-link">View all →</a>
@@ -856,13 +896,11 @@
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label">Browse</div>
           <h2>Shop by Place</h2>
         </div>
         <a href="#" class="section-link" id="roomViewAll">View all Kitchen →</a>
       </div>
       <div class="room-tabs-wrap">
-        <button class="tab-arrow tab-arrow-prev" id="tabPrevBtn" aria-label="Previous">‹</button>
         <div class="room-tabs" id="roomTabs">
           <button class="room-tab active" data-room="Kitchen">Kitchen</button>
           <button class="room-tab" data-room="Living">Living</button>
@@ -870,9 +908,8 @@
           <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
           <button class="room-tab" data-room="Office">Office</button>
           <button class="room-tab" data-room="Outdoors">Outdoors</button>
-          <button class="room-tab" data-room="Gardens">Gardens</button>
+          <button class="room-tab" data-room="Kids Space">Kids Space</button>
         </div>
-        <button class="tab-arrow tab-arrow-next" id="tabNextBtn" aria-label="Next">›</button>
       </div>
     </div>
 
@@ -917,9 +954,9 @@
           {name:'Cedar Garden Chair', price:'4,200 EGP'},
           {name:'Slatted Bench', price:'5,100 EGP'}
         ]},
-        Gardens: {count:'3 pieces', gradient:'linear-gradient(120deg,#7E9169,#3A4630)', products:[
-          {name:'Raised Planter Box', price:'2,300 EGP'},
-          {name:'Trellis Panel', price:'1,600 EGP'}
+        'Kids Space': {count:'15 pieces', gradient:'linear-gradient(120deg,#C0392B,#5A1E17)', products:[
+          {name:'Pikler Arch', price:'3,900 EGP'},
+          {name:'Reading Nook Shelf', price:'2,600 EGP'}
         ]}
       };
 
@@ -928,9 +965,6 @@
       const eyebrow = document.getElementById('rhEyebrow');
       const title = document.getElementById('rhTitle');
       const viewAll = document.getElementById('roomViewAll');
-      const tabTrack = document.getElementById('roomTabs');
-      const prevBtn = document.getElementById('tabPrevBtn');
-      const nextBtn = document.getElementById('tabNextBtn');
 
       function render(room){
         const data = roomData[room];
@@ -948,9 +982,6 @@
         });
       });
 
-      prevBtn.addEventListener('click', () => tabTrack.scrollBy({left:-160, behavior:'smooth'}));
-      nextBtn.addEventListener('click', () => tabTrack.scrollBy({left:160, behavior:'smooth'}));
-
       render('Kitchen');
     })();
   </script>
@@ -959,7 +990,6 @@
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label">Filter</div>
           <h2>Shop by Usage</h2>
         </div>
       </div>
@@ -996,19 +1026,77 @@
           <div class="usage-circle" style="background:linear-gradient(150deg,#7E9169,#495A38);"></div>
           <div class="usage-label">Well Being <sup>4</sup></div>
         </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#B0A48E,#5C5340);"></div>
+          <div class="usage-label">Flat Pack <sup>13</sup></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="kids-feature">
+    <div class="kf-photo"></div>
+    <div class="kf-content">
+      <h2>Montessori & Pikler, built to grow with them</h2>
+      <p>Climbing arches, reading nooks, and low shelving designed around how kids actually move — not scaled-down adult furniture.</p>
+      <a href="#" class="btn btn-primary" style="width:fit-content; background:var(--brown);">Shop Kids</a>
+
+      <div class="kf-badges">
+        <div class="kf-badge">
+          <span class="kf-badge-icon">◡</span>
+          <span>Rounded, sanded edges</span>
+        </div>
+        <div class="kf-badge">
+          <span class="kf-badge-icon">✓</span>
+          <span>Non-toxic, child-safe finish</span>
+        </div>
+        <div class="kf-badge">
+          <span class="kf-badge-icon">◈</span>
+          <span>Solid wood, built to last</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bundles">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <h2>Bundles</h2>
+        </div>
+        <a href="#" class="section-link">View all bundles →</a>
+      </div>
+      <div class="bundle-grid">
+        <div class="bundle-card">
+          <div class="bundle-photo"><div class="bundle-badge">Save 15%</div></div>
+          <div class="bundle-info">
+            <h3>Kitchen Starter Bundle</h3>
+            <p>Spice rack, mug shelf & pot rail</p>
+            <div class="bundle-price"><span class="was">6,450 EGP</span>5,480 EGP</div>
+          </div>
+        </div>
+        <div class="bundle-card">
+          <div class="bundle-photo"><div class="bundle-badge">Save 12%</div></div>
+          <div class="bundle-info">
+            <h3>Kids Room Bundle</h3>
+            <p>Pikler arch, reading nook & shelf</p>
+            <div class="bundle-price"><span class="was">9,200 EGP</span>8,100 EGP</div>
+          </div>
+        </div>
+        <div class="bundle-card">
+          <div class="bundle-photo"><div class="bundle-badge">Save 10%</div></div>
+          <div class="bundle-info">
+            <h3>Home Office Bundle</h3>
+            <p>Desk riser, cable tray & bookends</p>
+            <div class="bundle-price"><span class="was">3,290 EGP</span>2,960 EGP</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="split">
-    <div class="split-panel kids">
-      <div class="section-label">For the little ones</div>
-      <h2>Montessori & Pikler, built to grow with them</h2>
-      <p>Climbing arches, reading nooks, and low shelving designed around how kids actually move — not scaled-down adult furniture.</p>
-      <a href="#" class="btn btn-primary" style="width:fit-content; background:var(--brown);">Shop Kids</a>
-    </div>
     <div class="split-panel business">
-      <div class="section-label">Schools, designers & hospitality</div>
       <h2>Furnish at scale, priced for it</h2>
       <p>Bulk pricing for schools and nurseries, trade accounts for designers, and project quotes for hospitality and corporate spaces.</p>
       <a href="#" class="btn btn-primary" style="width:fit-content; background:var(--brown);">Business Inquiries</a>
@@ -1025,7 +1113,6 @@
   </div>
 
   <section class="custom-cta">
-    <div class="section-label">Made to your dimensions</div>
     <h2>Have a space that standard sizes don't fit?</h2>
     <p>Send us your dimensions and reference photos — we'll cut and assemble a piece built for your exact room, not the average one.</p>
     <a href="#" class="btn btn-primary" style="background:var(--gold);">Start a Custom Order</a>
@@ -1035,7 +1122,6 @@
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="section-label">From Our Customers</div>
           <h2>What People Are Saying</h2>
         </div>
       </div>
