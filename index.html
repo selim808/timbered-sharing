@@ -219,7 +219,7 @@
   .btn-outline:hover{border-color:var(--paper); background:rgba(254,252,249,0.12);}
 
   /* ---------- section shell ---------- */
-  section{padding:80px 32px;}
+  section{padding:48px 32px;}
   .section-inner{max-width:1260px; margin:0 auto;}
   .section-head{
     display:flex; justify-content:space-between; align-items:flex-end;
@@ -293,7 +293,7 @@
 
   /* ---------- kids / business split ---------- */
   .split{display:grid; grid-template-columns:1fr;}
-  .split-panel{padding:64px 46px; min-height:400px; display:flex; flex-direction:column; justify-content:center;}
+  .split-panel{padding:44px 46px; min-height:320px; display:flex; flex-direction:column; justify-content:center;}
   .split-panel.kids{background:var(--sage); color:var(--paper);}
   .split-panel.business{background:var(--cream); color:var(--charcoal);}
   .split-panel .section-label{color:inherit; opacity:0.8;}
@@ -357,7 +357,7 @@
     .bundle-grid{grid-template-columns:1fr;}
   }
 
-  .custom-cta{background:var(--charcoal); color:var(--cream); text-align:center; padding:90px 32px;}
+  .custom-cta{background:var(--charcoal); color:var(--cream); text-align:center; padding:56px 32px;}
   .custom-cta .section-label{color:var(--gold-light);}
   .custom-cta h2{font-size:clamp(26px,3.6vw,40px); max-width:600px; margin:0 auto 16px; color:var(--paper);}
   .custom-cta p{max-width:460px; margin:0 auto 28px; color:rgba(250,243,233,0.72); font-size:15.5px; line-height:1.6;}
@@ -451,10 +451,12 @@
   .rp-info h3{font-size:14px; font-weight:600; margin-bottom:5px;}
   .rp-info .price{font-size:13px; opacity:0.75;}
 
-  /* ---------- shop by place: sliding tabs + full-width photo hero ---------- */
+  /* ---------- shop by place: full-width sliding tabs + photo hero ---------- */
   .room-tabs-wrap{
-    position:relative; display:flex; align-items:center; gap:10px;
-    border-bottom:1px solid var(--line); padding-bottom:18px;
+    width:100vw; margin-left:calc(50% - 50vw);
+    padding:0 32px 18px;
+    border-bottom:1px solid var(--line);
+    margin-top:20px;
   }
   .room-tabs{
     display:flex; gap:10px; flex-wrap:nowrap;
@@ -463,7 +465,6 @@
     background:var(--cream);
     border-radius:26px;
     padding:8px; margin-bottom:0;
-    flex:1; min-width:0;
   }
   .room-tabs::-webkit-scrollbar{display:none;}
   .room-tab{
@@ -475,16 +476,6 @@
   }
   .room-tab:hover{border-color:var(--gold); color:var(--gold-deep);}
   .room-tab.active{background:var(--brown); color:var(--paper); border-color:var(--brown); box-shadow:0 3px 10px rgba(59,42,30,0.28);}
-
-  .tab-arrow{
-    flex:0 0 auto; margin-bottom:0;
-    width:34px; height:34px; border-radius:50%;
-    background:var(--paper); border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; font-size:14px; color:var(--charcoal);
-    box-shadow:0 2px 6px rgba(43,35,24,0.10);
-  }
-  .tab-arrow:hover{border-color:var(--gold); color:var(--gold-deep);}
 
   .room-hero{
     position:relative;
@@ -509,7 +500,7 @@
     .room-hero{height:46vh; min-height:280px;}
     .room-hero-caption{padding:22px 20px;}
     .room-hero-caption h3{font-size:26px;}
-    .tab-arrow{width:26px; height:26px; font-size:12px;}
+    .room-tabs-wrap{padding:0 20px 18px;}
   }
 
 
@@ -817,18 +808,16 @@
         </div>
         <a href="#" class="section-link" id="roomViewAll">View all Kitchen →</a>
       </div>
-      <div class="room-tabs-wrap">
-        <button class="tab-arrow tab-arrow-prev" id="tabPrevBtn" aria-label="Previous">‹</button>
-        <div class="room-tabs" id="roomTabs">
-          <button class="room-tab active" data-room="Kitchen">Kitchen</button>
-          <button class="room-tab" data-room="Living">Living</button>
-          <button class="room-tab" data-room="Bathroom">Bathroom</button>
-          <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
-          <button class="room-tab" data-room="Office">Office</button>
-          <button class="room-tab" data-room="Outdoors">Outdoors</button>
-          <button class="room-tab" data-room="Kids Space">Kids Space</button>
-        </div>
-        <button class="tab-arrow tab-arrow-next" id="tabNextBtn" aria-label="Next">›</button>
+    </div>
+    <div class="room-tabs-wrap">
+      <div class="room-tabs" id="roomTabs">
+        <button class="room-tab active" data-room="Kitchen">Kitchen</button>
+        <button class="room-tab" data-room="Living">Living</button>
+        <button class="room-tab" data-room="Bathroom">Bathroom</button>
+        <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
+        <button class="room-tab" data-room="Office">Office</button>
+        <button class="room-tab" data-room="Outdoors">Outdoors</button>
+        <button class="room-tab" data-room="Kids Space">Kids Space</button>
       </div>
     </div>
 
@@ -884,9 +873,6 @@
       const eyebrow = document.getElementById('rhEyebrow');
       const title = document.getElementById('rhTitle');
       const viewAll = document.getElementById('roomViewAll');
-      const tabTrack = document.getElementById('roomTabs');
-      const prevBtn = document.getElementById('tabPrevBtn');
-      const nextBtn = document.getElementById('tabNextBtn');
 
       function render(room){
         const data = roomData[room];
@@ -904,10 +890,77 @@
         });
       });
 
-      prevBtn.addEventListener('click', () => tabTrack.scrollBy({left:-160, behavior:'smooth'}));
-      nextBtn.addEventListener('click', () => tabTrack.scrollBy({left:160, behavior:'smooth'}));
-
       render('Kitchen');
+    })();
+  </script>
+
+  <section class="new-arrivals">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <h2>New Arrivals</h2>
+        </div>
+        <a href="#" class="section-link">View all →</a>
+      </div>
+      <div class="slider-wrap">
+        <button class="slider-arrow slider-prev" id="naPrevBtn" aria-label="Previous">‹</button>
+        <div class="na-track" id="naTrack">
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Living · Tables</div><h3>Midday Elegance Table</h3><div class="price">3,990 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Kitchen · Racks</div><h3>Arc Spice Rack</h3><div class="price">1,450 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Kids · Montessori</div><h3>Reading Nook Shelf</h3><div class="price">2,600 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Office · Organizers</div><h3>Desk Riser Set</h3><div class="price">1,650 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Bathroom · Storage</div><h3>Wall Towel Ladder</h3><div class="price">1,890 EGP</div></div>
+          </div>
+          <div class="na-card">
+            <div class="na-photo"><div class="na-badge">New</div></div>
+            <div class="na-info"><div class="cat">Outdoors · Chairs</div><h3>Cedar Garden Chair</h3><div class="price">4,200 EGP</div></div>
+          </div>
+        </div>
+        <button class="slider-arrow slider-next" id="naNextBtn" aria-label="Next">›</button>
+      </div>
+      <div class="slider-dots" id="naDots"></div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const track = document.getElementById('naTrack');
+      const dotsWrap = document.getElementById('naDots');
+      const prevBtn = document.getElementById('naPrevBtn');
+      const nextBtn = document.getElementById('naNextBtn');
+      const cards = track.children.length;
+      const scrollAmount = () => track.querySelector('.na-card').offsetWidth + 20;
+
+      for(let i=0; i<cards; i++){
+        const d = document.createElement('button');
+        d.className = 'dot' + (i===0 ? ' active' : '');
+        d.addEventListener('click', () => track.scrollTo({left: i*scrollAmount(), behavior:'smooth'}));
+        dotsWrap.appendChild(d);
+      }
+      const dots = dotsWrap.querySelectorAll('.dot');
+
+      function updateDots(){
+        const idx = Math.round(track.scrollLeft / scrollAmount());
+        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+      }
+      track.addEventListener('scroll', () => { window.requestAnimationFrame(updateDots); });
+
+      prevBtn.addEventListener('click', () => track.scrollBy({left:-scrollAmount(), behavior:'smooth'}));
+      nextBtn.addEventListener('click', () => track.scrollBy({left:scrollAmount(), behavior:'smooth'}));
     })();
   </script>
 
@@ -987,76 +1040,6 @@
       </div>
     </div>
   </section>
-
-  <section class="new-arrivals">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <h2>New Arrivals</h2>
-        </div>
-        <a href="#" class="section-link">View all →</a>
-      </div>
-      <div class="slider-wrap">
-        <button class="slider-arrow slider-prev" id="naPrevBtn" aria-label="Previous">‹</button>
-        <div class="na-track" id="naTrack">
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Living · Tables</div><h3>Midday Elegance Table</h3><div class="price">3,990 EGP</div></div>
-          </div>
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Kitchen · Racks</div><h3>Arc Spice Rack</h3><div class="price">1,450 EGP</div></div>
-          </div>
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Kids · Montessori</div><h3>Reading Nook Shelf</h3><div class="price">2,600 EGP</div></div>
-          </div>
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Office · Organizers</div><h3>Desk Riser Set</h3><div class="price">1,650 EGP</div></div>
-          </div>
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Bathroom · Storage</div><h3>Wall Towel Ladder</h3><div class="price">1,890 EGP</div></div>
-          </div>
-          <div class="na-card">
-            <div class="na-photo"><div class="na-badge">New</div></div>
-            <div class="na-info"><div class="cat">Outdoors · Chairs</div><h3>Cedar Garden Chair</h3><div class="price">4,200 EGP</div></div>
-          </div>
-        </div>
-        <button class="slider-arrow slider-next" id="naNextBtn" aria-label="Next">›</button>
-      </div>
-      <div class="slider-dots" id="naDots"></div>
-    </div>
-  </section>
-
-  <script>
-    (function(){
-      const track = document.getElementById('naTrack');
-      const dotsWrap = document.getElementById('naDots');
-      const prevBtn = document.getElementById('naPrevBtn');
-      const nextBtn = document.getElementById('naNextBtn');
-      const cards = track.children.length;
-      const scrollAmount = () => track.querySelector('.na-card').offsetWidth + 20;
-
-      for(let i=0; i<cards; i++){
-        const d = document.createElement('button');
-        d.className = 'dot' + (i===0 ? ' active' : '');
-        d.addEventListener('click', () => track.scrollTo({left: i*scrollAmount(), behavior:'smooth'}));
-        dotsWrap.appendChild(d);
-      }
-      const dots = dotsWrap.querySelectorAll('.dot');
-
-      function updateDots(){
-        const idx = Math.round(track.scrollLeft / scrollAmount());
-        dots.forEach((d,i) => d.classList.toggle('active', i===idx));
-      }
-      track.addEventListener('scroll', () => { window.requestAnimationFrame(updateDots); });
-
-      prevBtn.addEventListener('click', () => track.scrollBy({left:-scrollAmount(), behavior:'smooth'}));
-      nextBtn.addEventListener('click', () => track.scrollBy({left:scrollAmount(), behavior:'smooth'}));
-    })();
-  </script>
 
   <div class="divider"><div class="line"></div><span class="mark">◆</span><div class="line"></div></div>
 
