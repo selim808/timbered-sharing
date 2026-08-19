@@ -259,12 +259,18 @@
   .bs-info .price{font-size:14px; color:var(--charcoal); opacity:0.72;}
   .bs-info .price .was{text-decoration:line-through; opacity:0.5; margin-right:6px; font-size:12.5px;}
 
-  /* ---------- shop by usage: circular photo style ---------- */
+  /* ---------- shop by usage: circular photo slider ---------- */
   .type-strip{background:var(--paper);}
   .usage-grid{
-    display:grid; grid-template-columns:repeat(6,1fr); gap:24px;
+    display:flex; gap:26px;
+    overflow-x:auto; scroll-snap-type:x proximity;
+    scrollbar-width:none; padding-bottom:4px;
   }
-  .usage-item{text-align:center; display:block;}
+  .usage-grid::-webkit-scrollbar{display:none;}
+  .usage-item{
+    text-align:center; display:block;
+    flex:0 0 auto; width:120px; scroll-snap-align:start;
+  }
   .usage-circle{
     width:100%; aspect-ratio:1/1; border-radius:50%;
     margin-bottom:14px; transition:transform .15s ease;
@@ -276,10 +282,13 @@
   }
   .usage-label sup{font-size:10px; opacity:0.55; font-weight:600; margin-left:2px;}
   @media (max-width: 900px){
-    .usage-grid{grid-template-columns:repeat(3,1fr); gap:20px;}
+    .usage-item{width:100px;}
+    .usage-grid{gap:20px;}
   }
   @media (max-width: 480px){
-    .usage-grid{grid-template-columns:repeat(2,1fr);}
+    .usage-item{width:78px;}
+    .usage-grid{gap:16px;}
+    .usage-label{font-size:11px;}
   }
 
   /* ---------- kids / business split ---------- */
@@ -442,20 +451,23 @@
   .rp-info h3{font-size:14px; font-weight:600; margin-bottom:5px;}
   .rp-info .price{font-size:13px; opacity:0.75;}
 
-  /* ---------- shop by place: tabs (wrap, two rows) + full-width photo hero ---------- */
+  /* ---------- shop by place: sliding tabs + full-width photo hero ---------- */
   .room-tabs-wrap{
     position:relative; display:flex; align-items:center; gap:10px;
     border-bottom:1px solid var(--line); padding-bottom:18px;
   }
   .room-tabs{
-    display:flex; gap:10px; flex-wrap:wrap;
+    display:flex; gap:10px; flex-wrap:nowrap;
+    overflow-x:auto; scrollbar-width:none;
+    scroll-snap-type:x proximity;
     background:var(--cream);
-    border-radius:14px;
-    padding:10px; margin-bottom:0;
+    border-radius:26px;
+    padding:8px; margin-bottom:0;
     flex:1; min-width:0;
   }
+  .room-tabs::-webkit-scrollbar{display:none;}
   .room-tab{
-    flex:0 0 auto;
+    flex:0 0 auto; scroll-snap-align:start;
     padding:10px 20px; font-size:13.5px; font-weight:600;
     border:1px solid transparent; background:var(--paper); color:var(--charcoal);
     cursor:pointer; border-radius:20px; transition:all .15s ease; white-space:nowrap;
@@ -463,6 +475,16 @@
   }
   .room-tab:hover{border-color:var(--gold); color:var(--gold-deep);}
   .room-tab.active{background:var(--brown); color:var(--paper); border-color:var(--brown); box-shadow:0 3px 10px rgba(59,42,30,0.28);}
+
+  .tab-arrow{
+    flex:0 0 auto; margin-bottom:0;
+    width:34px; height:34px; border-radius:50%;
+    background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:14px; color:var(--charcoal);
+    box-shadow:0 2px 6px rgba(43,35,24,0.10);
+  }
+  .tab-arrow:hover{border-color:var(--gold); color:var(--gold-deep);}
 
   .room-hero{
     position:relative;
@@ -487,6 +509,7 @@
     .room-hero{height:46vh; min-height:280px;}
     .room-hero-caption{padding:22px 20px;}
     .room-hero-caption h3{font-size:26px;}
+    .tab-arrow{width:26px; height:26px; font-size:12px;}
   }
 
 
@@ -743,6 +766,151 @@
     </div>
   </section>
 
+  <section class="type-strip">
+    <div class="section-inner">
+      <div class="usage-grid">
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#E4C89C,#B9854F);"></div>
+          <div class="usage-label">Organizers <sup>32</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#D9AD72,#8A6238);"></div>
+          <div class="usage-label">Tables <sup>14</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#C89355,#7A5330);"></div>
+          <div class="usage-label">Chairs <sup>6</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#B9854F,#6B4A2C);"></div>
+          <div class="usage-label">TV Units <sup>5</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#C4A883,#725536);"></div>
+          <div class="usage-label">Racks <sup>21</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#A98F6C,#63482C);"></div>
+          <div class="usage-label">Shelves <sup>17</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#8B9877,#54613F);"></div>
+          <div class="usage-label">Wardrobe <sup>8</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#7E9169,#495A38);"></div>
+          <div class="usage-label">Well Being <sup>4</sup></div>
+        </a>
+        <a href="#" class="usage-item">
+          <div class="usage-circle" style="background:linear-gradient(150deg,#B0A48E,#5C5340);"></div>
+          <div class="usage-label">Flat Pack <sup>13</sup></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="rooms">
+    <div class="section-inner">
+      <div class="section-head">
+        <div>
+          <h2>Shop by Place</h2>
+        </div>
+        <a href="#" class="section-link" id="roomViewAll">View all Kitchen →</a>
+      </div>
+      <div class="room-tabs-wrap">
+        <button class="tab-arrow tab-arrow-prev" id="tabPrevBtn" aria-label="Previous">‹</button>
+        <div class="room-tabs" id="roomTabs">
+          <button class="room-tab active" data-room="Kitchen">Kitchen</button>
+          <button class="room-tab" data-room="Living">Living</button>
+          <button class="room-tab" data-room="Bathroom">Bathroom</button>
+          <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
+          <button class="room-tab" data-room="Office">Office</button>
+          <button class="room-tab" data-room="Outdoors">Outdoors</button>
+          <button class="room-tab" data-room="Kids Space">Kids Space</button>
+        </div>
+        <button class="tab-arrow tab-arrow-next" id="tabNextBtn" aria-label="Next">›</button>
+      </div>
+    </div>
+
+    <div class="room-hero" id="roomHero">
+      <div class="room-hero-overlay"></div>
+      <div class="room-hero-caption">
+        <div class="rh-eyebrow" id="rhEyebrow">18 pieces</div>
+        <h3 id="rhTitle">Kitchen</h3>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const roomData = {
+        Kitchen: {count:'18 pieces', gradient:'linear-gradient(120deg,#C89355,#5A3E28)', products:[
+          {name:'Cozy Mug Shelf', price:'2,900 EGP'},
+          {name:'Arc Spice Rack', price:'1,450 EGP'},
+          {name:'Modular Pot Rail', price:'2,100 EGP'}
+        ]},
+        Living: {count:'24 pieces', gradient:'linear-gradient(120deg,#B9854F,#4A3626)', products:[
+          {name:'Midday Elegance Table', price:'3,990 EGP'},
+          {name:'Gentle Line Shelf', price:'1,700 EGP'},
+          {name:'Relaxation Lounger', price:'3,990 EGP'}
+        ]},
+        Bathroom: {count:'9 pieces', gradient:'linear-gradient(120deg,#D9AD72,#6B4A2C)', products:[
+          {name:'Wall Towel Ladder', price:'1,890 EGP'},
+          {name:'Vanity Organizer', price:'1,550 EGP'},
+          {name:'Corner Shelf Set', price:'1,200 EGP'}
+        ]},
+        Bedrooms: {count:'11 pieces', gradient:'linear-gradient(120deg,#8B9877,#3D4630)', products:[
+          {name:'Linear Wardrobe', price:'7,400 EGP'},
+          {name:'Bedside Table', price:'2,100 EGP'},
+          {name:'Slat Headboard', price:'4,600 EGP'}
+        ]},
+        Office: {count:'7 pieces', gradient:'linear-gradient(120deg,#C4A883,#5C4630)', products:[
+          {name:'Desk Riser Set', price:'1,650 EGP'},
+          {name:'Cable Organizer Tray', price:'890 EGP'},
+          {name:'Bookend Pair', price:'750 EGP'}
+        ]},
+        Outdoors: {count:'4 pieces', gradient:'linear-gradient(120deg,#A98F6C,#4E3B24)', products:[
+          {name:'Cedar Garden Chair', price:'4,200 EGP'},
+          {name:'Slatted Bench', price:'5,100 EGP'}
+        ]},
+        'Kids Space': {count:'15 pieces', gradient:'linear-gradient(120deg,#C0392B,#5A1E17)', products:[
+          {name:'Pikler Arch', price:'3,900 EGP'},
+          {name:'Reading Nook Shelf', price:'2,600 EGP'}
+        ]}
+      };
+
+      const tabs = document.querySelectorAll('#roomTabs .room-tab');
+      const hero = document.getElementById('roomHero');
+      const eyebrow = document.getElementById('rhEyebrow');
+      const title = document.getElementById('rhTitle');
+      const viewAll = document.getElementById('roomViewAll');
+      const tabTrack = document.getElementById('roomTabs');
+      const prevBtn = document.getElementById('tabPrevBtn');
+      const nextBtn = document.getElementById('tabNextBtn');
+
+      function render(room){
+        const data = roomData[room];
+        hero.style.background = data.gradient;
+        eyebrow.textContent = data.count;
+        title.textContent = room;
+        viewAll.textContent = 'View all ' + room + ' →';
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          render(tab.dataset.room);
+        });
+      });
+
+      prevBtn.addEventListener('click', () => tabTrack.scrollBy({left:-160, behavior:'smooth'}));
+      nextBtn.addEventListener('click', () => tabTrack.scrollBy({left:160, behavior:'smooth'}));
+
+      render('Kitchen');
+    })();
+  </script>
+
   <section class="bestsellers">
     <div class="section-inner">
       <div class="section-head">
@@ -891,148 +1059,6 @@
   </script>
 
   <div class="divider"><div class="line"></div><span class="mark">◆</span><div class="line"></div></div>
-
-  <section class="rooms">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <h2>Shop by Place</h2>
-        </div>
-        <a href="#" class="section-link" id="roomViewAll">View all Kitchen →</a>
-      </div>
-      <div class="room-tabs-wrap">
-        <div class="room-tabs" id="roomTabs">
-          <button class="room-tab active" data-room="Kitchen">Kitchen</button>
-          <button class="room-tab" data-room="Living">Living</button>
-          <button class="room-tab" data-room="Bathroom">Bathroom</button>
-          <button class="room-tab" data-room="Bedrooms">Bedrooms</button>
-          <button class="room-tab" data-room="Office">Office</button>
-          <button class="room-tab" data-room="Outdoors">Outdoors</button>
-          <button class="room-tab" data-room="Kids Space">Kids Space</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="room-hero" id="roomHero">
-      <div class="room-hero-overlay"></div>
-      <div class="room-hero-caption">
-        <div class="rh-eyebrow" id="rhEyebrow">18 pieces</div>
-        <h3 id="rhTitle">Kitchen</h3>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    (function(){
-      const roomData = {
-        Kitchen: {count:'18 pieces', gradient:'linear-gradient(120deg,#C89355,#5A3E28)', products:[
-          {name:'Cozy Mug Shelf', price:'2,900 EGP'},
-          {name:'Arc Spice Rack', price:'1,450 EGP'},
-          {name:'Modular Pot Rail', price:'2,100 EGP'}
-        ]},
-        Living: {count:'24 pieces', gradient:'linear-gradient(120deg,#B9854F,#4A3626)', products:[
-          {name:'Midday Elegance Table', price:'3,990 EGP'},
-          {name:'Gentle Line Shelf', price:'1,700 EGP'},
-          {name:'Relaxation Lounger', price:'3,990 EGP'}
-        ]},
-        Bathroom: {count:'9 pieces', gradient:'linear-gradient(120deg,#D9AD72,#6B4A2C)', products:[
-          {name:'Wall Towel Ladder', price:'1,890 EGP'},
-          {name:'Vanity Organizer', price:'1,550 EGP'},
-          {name:'Corner Shelf Set', price:'1,200 EGP'}
-        ]},
-        Bedrooms: {count:'11 pieces', gradient:'linear-gradient(120deg,#8B9877,#3D4630)', products:[
-          {name:'Linear Wardrobe', price:'7,400 EGP'},
-          {name:'Bedside Table', price:'2,100 EGP'},
-          {name:'Slat Headboard', price:'4,600 EGP'}
-        ]},
-        Office: {count:'7 pieces', gradient:'linear-gradient(120deg,#C4A883,#5C4630)', products:[
-          {name:'Desk Riser Set', price:'1,650 EGP'},
-          {name:'Cable Organizer Tray', price:'890 EGP'},
-          {name:'Bookend Pair', price:'750 EGP'}
-        ]},
-        Outdoors: {count:'4 pieces', gradient:'linear-gradient(120deg,#A98F6C,#4E3B24)', products:[
-          {name:'Cedar Garden Chair', price:'4,200 EGP'},
-          {name:'Slatted Bench', price:'5,100 EGP'}
-        ]},
-        'Kids Space': {count:'15 pieces', gradient:'linear-gradient(120deg,#C0392B,#5A1E17)', products:[
-          {name:'Pikler Arch', price:'3,900 EGP'},
-          {name:'Reading Nook Shelf', price:'2,600 EGP'}
-        ]}
-      };
-
-      const tabs = document.querySelectorAll('#roomTabs .room-tab');
-      const hero = document.getElementById('roomHero');
-      const eyebrow = document.getElementById('rhEyebrow');
-      const title = document.getElementById('rhTitle');
-      const viewAll = document.getElementById('roomViewAll');
-
-      function render(room){
-        const data = roomData[room];
-        hero.style.background = data.gradient;
-        eyebrow.textContent = data.count;
-        title.textContent = room;
-        viewAll.textContent = 'View all ' + room + ' →';
-      }
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          render(tab.dataset.room);
-        });
-      });
-
-      render('Kitchen');
-    })();
-  </script>
-
-  <section class="type-strip">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <h2>Shop by Usage</h2>
-        </div>
-      </div>
-      <div class="usage-grid">
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#E4C89C,#B9854F);"></div>
-          <div class="usage-label">Organizers <sup>32</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#D9AD72,#8A6238);"></div>
-          <div class="usage-label">Tables <sup>14</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#C89355,#7A5330);"></div>
-          <div class="usage-label">Chairs <sup>6</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#B9854F,#6B4A2C);"></div>
-          <div class="usage-label">TV Units <sup>5</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#C4A883,#725536);"></div>
-          <div class="usage-label">Racks <sup>21</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#A98F6C,#63482C);"></div>
-          <div class="usage-label">Shelves <sup>17</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#8B9877,#54613F);"></div>
-          <div class="usage-label">Wardrobe <sup>8</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#7E9169,#495A38);"></div>
-          <div class="usage-label">Well Being <sup>4</sup></div>
-        </a>
-        <a href="#" class="usage-item">
-          <div class="usage-circle" style="background:linear-gradient(150deg,#B0A48E,#5C5340);"></div>
-          <div class="usage-label">Flat Pack <sup>13</sup></div>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <section class="kids-feature">
     <div class="kf-photo"></div>
